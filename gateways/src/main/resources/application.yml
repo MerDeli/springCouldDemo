@@ -1,0 +1,27 @@
+server:
+  port: 9005
+
+spring:
+  application:
+    name: zuul-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: neo_route
+          uri: http://localhost:9004
+          predicates:
+            - Path=/provider1/*
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9002/eureka/
+
+#zuul:
+#  routes:
+#    springcloudProvider1: /provider1/**
+#    springcloudProvider2: /provider2/**
+#    # 统一入口为上面的配置，其他入口忽略
+#    ignored-patterns: /*-service/**
+#    # 忽略整个服务对外提供接口
+#    ignored-services: order-service
