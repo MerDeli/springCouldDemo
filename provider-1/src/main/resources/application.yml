@@ -4,11 +4,15 @@ server:
 spring:
   application:
     name: springcloudProvider1
+  security:
+    user:
+      name: admin
+      password: admin123
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:9002/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:9002/eureka/
       #healthcheck:
         #enabled: true #开启自定义健康检查
   instance:

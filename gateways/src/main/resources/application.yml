@@ -11,11 +11,14 @@ spring:
           uri: http://localhost:9004
           predicates:
             - Path=/provider1/*
-
+  security:
+    user:
+      name: admin
+      password: admin123
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:9002/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:9002/eureka/
 
 #zuul:
 #  routes:
