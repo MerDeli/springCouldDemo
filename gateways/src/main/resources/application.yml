@@ -11,6 +11,10 @@ spring:
           uri: http://localhost:9004
           predicates:
             - Path=/provider1/*
+        - id: two_route
+          uri: http://localhost:9006
+          predicates:
+            - Path=/security/*
   security:
     user:
       name: admin

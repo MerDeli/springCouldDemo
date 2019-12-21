@@ -1,22 +1,15 @@
 server:
-  port: 9004
+  servlet:
+    context-path: /pjb
+  port: 9006
 
 spring:
   application:
-    name: springcloudProvider1
+    name: security-oauth-server
   security:
-    user:
-      name: admin
-      password: admin123
-    oauth2:
-        client:
-          client-id: client_1
-          client-secret: client_1_admin123
-          user-authorization-uri: http://localhost:9006/pjb/oauth/authorize
-          access-token-uri: http://localhost:9006/pjb/oauth/token
-        resource:
-          jwt:
-            key-uri: http://localhost:9006/pjb/oauth/token_key
+      user:
+        name: admin
+        password: admin123
 eureka:
   client:
     serviceUrl:
