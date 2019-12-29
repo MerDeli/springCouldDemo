@@ -1,34 +1,39 @@
-server:
-  port: 9005
 
+#ÏîÄ¿Ãû
 spring:
   application:
-    name: zuul-gateway
-  cloud:
-    gateway:
-      routes:
-        - id: neo_route
-          uri: http://localhost:9004
-          predicates:
-            - Path=/provider1/*
-        - id: two_route
-          uri: http://localhost:9006
-          predicates:
-            - Path=/security/*
+    name: api-gateway-zuul
   security:
     user:
       name: admin
       password: admin123
+#¶Ë¿ÚºÅ
+server:
+  port: 9005
+
+zuul:
+  routes:
+    #ÇëÇóÖØ¶¨Ïò
+    provider1:
+      serviceId: springcloudProvider1
+      path: /provider1/**
+#      path: /hello/*
+#      url: http://www.ityouknow.com/
+#    #Ä¬ÈÏÇé¿öÏÂ£¬Zuul»á´úÀíËùÓĞ×¢²áµ½Eureka ServerµÄÎ¢·şÎñ£¬
+#    #²¢ÇÒZuulµÄÂ·ÓÉ¹æÔòÈçÏÂ£ºhttp://ZUUL_HOST:ZUUL_PORT/Î¢·şÎñÔÚEurekaÉÏµÄserviceId/**»á±»×ª·¢µ½serviceId¶ÔÓ¦µÄÎ¢·şÎñ
+#    eureka-discovery: /discovery/*
+#    discovery:
+#      path: /discovery2/*
+#      serviceId: eureka-discovery
+
 eureka:
   client:
     serviceUrl:
       defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:9002/eureka/
-
-#zuul:
-#  routes:
-#    springcloudProvider1: /provider1/**
-#    springcloudProvider2: /provider2/**
-#    # ç»Ÿä¸€å…¥å£ä¸ºä¸Šé¢çš„é…ç½®ï¼Œå…¶ä»–å…¥å£å¿½ç•¥
-#    ignored-patterns: /*-service/**
-#    # å¿½ç•¥æ•´ä¸ªæœåŠ¡å¯¹å¤–æä¾›æ¥å£
-#    ignored-services: order-service
+        #healthcheck:
+      #enabled: true #¿ªÆô×Ô¶¨Òå½¡¿µ¼ì²é
+  instance:
+    # eureka·şÎñÆ÷ÔÚ½ÓÊÕµ½×îºóÒ»¸öĞÄÌøÖ®ºóµÈ´ıµÄÊ±¼ä£¬È»ºó²ÅÄÜ´ÓÁĞ±íÖĞÉ¾³ı´ËÊµÀı(¿ª·¢»·¾³)
+    lease-expiration-duration-in-seconds: 10
+    #eureka¿Í»§¶ËÒªÏòeureka·şÎñÆ÷·¢ËÍĞÄÌøµÄÆµÂÊ£¬Ä¬ÈÏ30Ãë(¿ª·¢»·¾³)
+    lease-renewal-interval-in-seconds: 1
