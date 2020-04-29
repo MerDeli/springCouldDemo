@@ -13,6 +13,14 @@
         <module>gateways</module>
         <module>provider-1</module>
         <module>security</module>
+        <module>auth-common</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.16</version><!--版本号自己选一个就行-->
+        </dependency>
+    </dependencies>
 
 </project>

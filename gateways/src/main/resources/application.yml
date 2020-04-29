@@ -1,39 +1,28 @@
-
-#项目名
 spring:
   application:
     name: api-gateway-zuul
-  security:
-    user:
-      name: admin
-      password: admin123
-#端口号
+
 server:
-  port: 9005
+  port: 9003
 
 zuul:
   routes:
-    #请求重定向
     provider1:
-      serviceId: springcloudProvider1
+      url: http://localhost:9005/
       path: /provider1/**
-#      path: /hello/*
-#      url: http://www.ityouknow.com/
-#    #默认情况下，Zuul会代理所有注册到Eureka Server的微服务，
-#    #并且Zuul的路由规则如下：http://ZUUL_HOST:ZUUL_PORT/微服务在Eureka上的serviceId/**会被转发到serviceId对应的微服务
-#    eureka-discovery: /discovery/*
-#    discovery:
-#      path: /discovery2/*
-#      serviceId: eureka-discovery
+    auth:
+      url: http://localhost:9004/
+      path: /auth/**
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:9002/eureka/
-        #healthcheck:
-      #enabled: true #开启自定义健康检查
+      defaultZone: http://localhost:9002/eureka/
   instance:
-    # eureka服务器在接收到最后一个心跳之后等待的时间，然后才能从列表中删除此实例(开发环境)
     lease-expiration-duration-in-seconds: 10
-    #eureka客户端要向eureka服务器发送心跳的频率，默认30秒(开发环境)
     lease-renewal-interval-in-seconds: 1
+
+ribbon:
+  eureka:
+#    ribbon绂佹帀Eureka
+    enabled: false

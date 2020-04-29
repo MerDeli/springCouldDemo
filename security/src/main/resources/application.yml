@@ -1,21 +1,35 @@
 server:
-  servlet:
-    context-path: /pjb
-  port: 9006
+  port: 9004
 
 spring:
   application:
-    name: security-oauth-server
-  security:
-      user:
-        name: admin
-        password: admin123
+    name: api-security
+#  security:
+#      user:
+#        name: admin
+#        password: admin123
+  datasource:
+    url: jdbc:mysql://192.168.197.129:3306/oauth2?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: admin123
+
+  data:
+    redis:
+      repositories:
+        enabled: false
+
+  redis:
+    host: 192.168.197.129
+    port: 6379
+    database: 2
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:9002/eureka/
-      #healthcheck:
-        #enabled: true #开启自定义健康检查
+      defaultZone: http://localhost:9002/eureka/
   instance:
     # eureka服务器在接收到最后一个心跳之后等待的时间，然后才能从列表中删除此实例(开发环境)
     lease-expiration-duration-in-seconds: 10
