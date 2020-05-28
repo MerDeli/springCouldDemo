@@ -1,6 +1,6 @@
 package com.lyy.security.service;
 
-import com.lyy.security.db.Account;
+import com.lyy.auth.entity.Account;
 import com.lyy.security.sso.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

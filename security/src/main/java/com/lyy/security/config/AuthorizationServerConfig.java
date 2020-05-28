@@ -108,9 +108,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         };
         security.passwordEncoder(passwordEncoder);
         security.allowFormAuthenticationForClients()
+                .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()")
                 .addTokenEndpointAuthenticationFilter(new CorsFilter(source));
     }
+
 
 
 

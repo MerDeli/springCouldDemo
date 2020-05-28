@@ -1,18 +1,19 @@
+
 server:
-  port: 9004
+  port: 9006
 
 spring:
   application:
-    name: api-security
-#  security:
-#      user:
-#        name: admin
-#        password: admin123
-#  security:
-#    basic:
-#      enabled: false
+    name: api-auth
+  #  security:
+  #      user:
+  #        name: admin
+  #        password: admin123
+  #  security:
+  #    basic:
+  #      enabled: false
   datasource:
-    url: jdbc:mysql://192.168.197.129:3306/oauth2?useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://192.168.197.129:3306/sp_auth?useUnicode=true&characterEncoding=UTF-8
     username: root
     password: admin123
 

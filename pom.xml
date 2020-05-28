@@ -14,6 +14,8 @@
         <module>provider-1</module>
         <module>security</module>
         <module>auth-common</module>
+        <module>auth</module>
+        <module>auth-client</module>
     </modules>
     <dependencies>
         <dependency>
