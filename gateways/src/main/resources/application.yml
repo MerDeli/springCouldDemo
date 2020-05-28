@@ -10,8 +10,11 @@ zuul:
     provider1:
       url: http://localhost:9005/
       path: /provider1/**
-    auth:
+    secur:
       url: http://localhost:9004/
+      path: /secur/**
+    auth:
+      url: http://localhost:9006/
       path: /auth/**
 
 eureka:
